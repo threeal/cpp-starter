@@ -1,0 +1,18 @@
+name: build
+on:
+  workflow_dispatch:
+  push:
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repository
+        uses: actions/checkout@v2.5.0
+        with:
+          fetch-depth: 0
+
+      - name: Configure CMake
+        run: cmake . -B build
+
+      - name: Build targets
+        run: cmake --build build
