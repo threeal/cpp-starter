@@ -32,7 +32,9 @@ jobs:
         run: cmake . -B build -DBUILD_TESTING=ON
 
       - name: Check code formatting
-        run: cmake --build build --target check-format
+        run: |
+          cmake --build build --target format
+          cmake --build build --target check-format
 
       - name: Build targets
         run: cmake --build build
