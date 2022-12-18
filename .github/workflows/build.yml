@@ -31,7 +31,7 @@ jobs:
       - name: Configure CMake
         run: cmake . -B build -DBUILD_TESTING=ON
 
-      - name: Check code formatting
+      - name: Check for code formatting
         run: |
           cmake --build build --target format
           cmake --build build --target check-format
