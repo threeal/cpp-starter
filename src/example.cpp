@@ -2,8 +2,6 @@
 
 namespace example {
 
-bool is_odd(int val) {
-  return val % 2 == 1;
-}
+bool is_odd(int val) { return val % 2 == 1; }
 
-} // namespace example
+}  // namespace example
