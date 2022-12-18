@@ -4,4 +4,4 @@ namespace example {
 
 bool is_odd(int val);
 
-} // namespace example
+}  // namespace example
