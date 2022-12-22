@@ -29,7 +29,7 @@ jobs:
         run: pip3 install cmake-format
 
       - name: Configure CMake
-        run: cmake . -B build -DBUILD_TESTING=ON
+        run: cmake . -B build -DBUILD_TESTING=ON -DCMAKE_CXX_FLAGS='-Werror'
 
       - name: Check for code formatting
         run: |
