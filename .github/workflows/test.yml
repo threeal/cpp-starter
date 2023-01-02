@@ -18,11 +18,11 @@ jobs:
       - name: Run tests
         run: ctest --test-dir build --verbose
 
-      - name: Install gcovr
-        run: pip3 install gcovr
-
-      - name: Test for code coverage
-        run: gcovr -e 'build/*' --fail-under-line 80
+      - name: Check code coverage
+        uses: threeal/gcovr-action@v0.1.0
+        with:
+          exclude: build/*
+          fail-under-line: 80
 
   check-warning:
     runs-on: ubuntu-latest
