@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v3.2.0
 
       - name: Configure CMake
-        run: cmake . -B build -DBUILD_TESTING=ON -DCMAKE_CXX_FLAGS='-Werror'
+        run: cmake . -B build -DBUILD_TESTING=ON
 
       - name: Build targets
         run: cmake --build build
@@ -23,6 +23,18 @@ jobs:
 
       - name: Test for code coverage
         run: gcovr -e 'build/*' --fail-under-line 80
+
+  check-warning:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3.2.0
+
+      - name: Configure CMake
+        run: cmake . -B build -DCMAKE_CXX_FLAGS='-Werror' -DBUILD_TESTING=ON
+
+      - name: Build targets
+        run: cmake --build build
 
   check-formatting:
     runs-on: ubuntu-latest
