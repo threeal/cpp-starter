@@ -7,9 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout this repository
-        uses: actions/checkout@v2.5.0
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@v3.2.0
 
       - name: Install cmake-format
         run: pip3 install cmake-format
