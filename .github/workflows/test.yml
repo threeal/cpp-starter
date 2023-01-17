@@ -19,7 +19,7 @@ jobs:
         run: ctest --test-dir build --verbose
 
       - name: Check code coverage
-        uses: threeal/gcovr-action@v0.1.0
+        uses: threeal/gcovr-action@v0.2.0
         with:
           exclude: build/*
           fail-under-line: 80
