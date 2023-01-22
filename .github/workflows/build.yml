@@ -9,8 +9,5 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3.3.0
 
-      - name: Configure CMake
-        run: cmake . -B build
-
-      - name: Build targets
-        run: cmake --build build
+      - name: Configure and build this project
+        uses: threeal/cmake-action@v1.0.0
