@@ -9,13 +9,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3.3.0
 
-      - name: Configure and build this project
+      - name: Configure, build, and test this project
         uses: threeal/cmake-action@v1.1.0
         with:
           args: -DBUILD_TESTING=ON
-
-      - name: Run tests
-        run: ctest --test-dir build --verbose
+          run-test: true
 
       - name: Check code coverage
         uses: threeal/gcovr-action@v0.2.0
