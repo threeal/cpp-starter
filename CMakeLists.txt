@@ -10,7 +10,7 @@ cpmaddpackage("gh:TheLartians/Format.cmake@1.7.3")
 add_library(example src/example.cpp)
 target_include_directories(example PUBLIC include)
 
-if(BUILD_TESTING)
+if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
   enable_testing()
 
   cpmaddpackage("gh:catchorg/Catch2@3.2.0")
