@@ -1,1 +1,6 @@
+.*
+!.clang*
+!.cmake*
+!.git*
+
 build
