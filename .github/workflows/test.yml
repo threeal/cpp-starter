@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v3.5.3
 
       - name: Configure, build, and test this project
-        uses: threeal/cmake-action@v1.1.0
+        uses: threeal/cmake-action@v1.2.0
         with:
           args: -DBUILD_TESTING=ON
           run-test: true
@@ -30,10 +30,11 @@ jobs:
         uses: actions/checkout@v3.5.3
 
       - name: Configure and build this project
-        uses: threeal/cmake-action@v1.1.0
+        uses: threeal/cmake-action@v1.2.0
         with:
           cxx-flags: -Werror
           args: -DBUILD_TESTING=ON
+          run-build: true
 
   check-formatting:
     runs-on: ubuntu-latest
