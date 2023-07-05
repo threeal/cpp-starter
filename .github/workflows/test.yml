@@ -34,6 +34,7 @@ jobs:
         with:
           cxx-flags: -Werror
           args: -DBUILD_TESTING=ON
+          run-build: true
 
   check-formatting:
     runs-on: ubuntu-latest

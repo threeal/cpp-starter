@@ -13,3 +13,5 @@ jobs:
 
       - name: Configure and build this project
         uses: threeal/cmake-action@v1.2.0
+        with:
+          run-build: true
