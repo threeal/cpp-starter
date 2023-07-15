@@ -14,7 +14,7 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
   if(BUILD_TESTING)
     enable_testing()
 
-    cpmaddpackage("gh:catchorg/Catch2@3.3.2")
+    cpmaddpackage("gh:catchorg/Catch2@3.4.0")
     include("${Catch2_SOURCE_DIR}/extras/Catch.cmake")
 
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage -fPIC -O0")
