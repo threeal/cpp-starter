@@ -9,12 +9,13 @@ target_include_directories(example PUBLIC include)
 
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
   include(cmake/CPM.cmake)
-  cpmaddpackage("gh:TheLartians/Format.cmake@1.7.3")
+  cpmusepackagelock(package-lock.cmake)
+  cpmgetpackage(Format.cmake)
 
   if(BUILD_TESTING)
     enable_testing()
 
-    cpmaddpackage("gh:catchorg/Catch2@3.4.0")
+    cpmgetpackage(Catch2)
     include("${Catch2_SOURCE_DIR}/extras/Catch.cmake")
 
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage -fPIC -O0")
