@@ -18,9 +18,9 @@ jobs:
           run-test: true
 
       - name: Check code coverage
-        uses: threeal/gcovr-action@v0.2.0
+        uses: threeal/gcovr-action@v1.0.0
         with:
-          exclude: build/*
+          excludes: build/*
           fail-under-line: 80
 
   check-warning:
