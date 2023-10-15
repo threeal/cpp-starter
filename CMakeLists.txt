@@ -9,7 +9,7 @@ target_include_directories(example PUBLIC include)
 
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
   include(cmake/CPM.cmake)
-  cpmusepackagelock(package-lock.cmake)
+  cpmusepackagelock(package-lock)
   cpmgetpackage(Format.cmake)
 
   if(BUILD_TESTING)
