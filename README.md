@@ -1,6 +1,6 @@
-# Minimal C++ Starter
+# C++ Starter
 
-[![build status](https://img.shields.io/github/actions/workflow/status/threeal/minimal-cpp-starter/build.yml?branch=main)](https://github.com/threeal/minimal-cpp-starter/actions/workflows/build.yml)
-[![test status](https://img.shields.io/github/actions/workflow/status/threeal/minimal-cpp-starter/test.yml?label=test&branch=main)](https://github.com/threeal/minimal-cpp-starter/actions/workflows/test.yml)
+[![build status](https://img.shields.io/github/actions/workflow/status/threeal/cpp-starter/build.yml?branch=main)](https://github.com/threeal/cpp-starter/actions/workflows/build.yml)
+[![test status](https://img.shields.io/github/actions/workflow/status/threeal/cpp-starter/test.yml?label=test&branch=main)](https://github.com/threeal/cpp-starter/actions/workflows/test.yml)
 
-A minimal C++ template to kickstart your project.
+The C++ Starter is a [GitHub repository template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) that provides a minimalistic boilerplate to kickstart your [C++](https://isocpp.org) project. This template offers a streamlined foundation, complete with predefined file structures, essential tools, and recommended settings, ensuring a swift and efficient start to your C++ development journey.
