@@ -9,13 +9,14 @@ jobs:
     name: Build Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4.1.1
 
-      - name: Configure and build this project
+      - name: Configure project
         uses: threeal/cmake-action@v1.3.0
-        with:
-          run-build: true
+
+      - name: Build project
+        run: cmake --build build
 
   unit-tests:
     name: Unit Tests
