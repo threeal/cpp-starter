@@ -5,8 +5,8 @@ on:
   push:
     branches: [main]
 jobs:
-  build:
-    name: Build
+  build-release:
+    name: Build Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
