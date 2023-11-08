@@ -22,16 +22,21 @@ jobs:
     name: Unit Tests
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4.1.1
 
-      - name: Configure, build, and test this project
+      - name: Configure project
         uses: threeal/cmake-action@v1.3.0
         with:
-          args: -DBUILD_TESTING=ON
-          run-test: true
+          options: BUILD_TESTING=ON
 
-      - name: Check code coverage
+      - name: Build Project
+        run: cmake --build build
+
+      - name: Test Project
+        run: ctest --test-dir build --output-on-failure --no-tests=error
+
+      - name: Check test coverage
         uses: threeal/gcovr-action@v1.0.0
         with:
           excludes: build/*
