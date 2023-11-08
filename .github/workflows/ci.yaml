@@ -5,51 +5,47 @@ on:
   push:
     branches: [main]
 jobs:
-  build:
-    name: Build
+  build-release:
+    name: Build Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4.1.1
 
-      - name: Configure and build this project
+      - name: Configure project
         uses: threeal/cmake-action@v1.3.0
-        with:
-          run-build: true
 
-  unit-tests:
-    name: Unit Tests
+      - name: Build project
+        run: cmake --build build
+
+  build-testing:
+    name: Build Testing
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4.1.1
-
-      - name: Configure, build, and test this project
-        uses: threeal/cmake-action@v1.3.0
-        with:
-          args: -DBUILD_TESTING=ON
-          run-test: true
-
-      - name: Check code coverage
-        uses: threeal/gcovr-action@v1.0.0
-        with:
-          excludes: build/*
-          fail-under-line: 80
-
-  check-formatting:
-    name: Check Formatting
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4.1.1
 
       - name: Install cmake-format
         run: pip3 install cmake-format
 
-      - name: Configure CMake
-        run: cmake . -B build
+      - name: Configure project
+        uses: threeal/cmake-action@v1.3.0
+        with:
+          options: BUILD_TESTING=ON
 
-      - name: Check code formatting
+      - name: Check formatting
         run: |
           cmake --build build --target format
-          cmake --build build --target check-format
+          git diff --exit-code HEAD
+
+      - name: Build Project
+        run: cmake --build build
+
+      - name: Test Project
+        run: ctest --test-dir build --output-on-failure --no-tests=error
+
+      - name: Check coverage
+        uses: threeal/gcovr-action@v1.0.0
+        with:
+          excludes: build/*
+          fail-under-line: 80
