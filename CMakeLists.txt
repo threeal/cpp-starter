@@ -4,7 +4,7 @@ project(example)
 
 file(DOWNLOAD https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.38.7/CPM.cmake
      ${CMAKE_BINARY_DIR}/_deps/CPM.cmake
-     EXPECTED_HASH SHA256=83e5eb71b2bbb8b1f2ad38f1950287a057624e385c238f6087f94cdfc44af9c5)
+     EXPECTED_MD5 14ea07dfb484cad5db4ee1c75fd6a911)
 include(${CMAKE_BINARY_DIR}/_deps/CPM.cmake)
 cpmusepackagelock(package-lock)
 
