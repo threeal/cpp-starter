@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 3.0)
 
 project(example)
 
-file(DOWNLOAD https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.38.6/CPM.cmake
+file(DOWNLOAD https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.38.7/CPM.cmake
      ${CMAKE_BINARY_DIR}/_deps/CPM.cmake
-     EXPECTED_HASH SHA256=11c3fa5f1ba14f15d31c2fb63dbc8628ee133d81c8d764caad9a8db9e0bacb07)
+     EXPECTED_HASH SHA256=83e5eb71b2bbb8b1f2ad38f1950287a057624e385c238f6087f94cdfc44af9c5)
 include(${CMAKE_BINARY_DIR}/_deps/CPM.cmake)
 cpmusepackagelock(package-lock)
 
