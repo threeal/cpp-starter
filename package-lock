@@ -1,6 +1,13 @@
 # CPM Package Lock
 # This file should be committed to version control
 
+# argparse
+CPMDeclarePackage(argparse
+  VERSION 3.0
+  GITHUB_REPOSITORY p-ranav/argparse
+  SYSTEM YES
+  EXCLUDE_FROM_ALL YES
+)
 # CheckWarning.cmake
 CPMDeclarePackage(CheckWarning.cmake
   VERSION 1.0.0
