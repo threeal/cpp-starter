@@ -3,8 +3,7 @@ cmake_minimum_required(VERSION 3.5)
 project(example)
 
 file(DOWNLOAD https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.38.7/CPM.cmake
-     ${CMAKE_BINARY_DIR}/_deps/CPM.cmake
-     EXPECTED_MD5 14ea07dfb484cad5db4ee1c75fd6a911)
+     ${CMAKE_BINARY_DIR}/_deps/CPM.cmake EXPECTED_MD5 14ea07dfb484cad5db4ee1c75fd6a911)
 include(${CMAKE_BINARY_DIR}/_deps/CPM.cmake)
 cpmusepackagelock(package-lock)
 
@@ -12,6 +11,7 @@ cpmgetpackage(CheckWarning.cmake)
 
 add_library(example src/example.cpp)
 target_include_directories(example PUBLIC include)
+set_property(TARGET example PROPERTY CXX_STANDARD 11)
 target_check_warning(example)
 
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)

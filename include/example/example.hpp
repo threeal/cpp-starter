@@ -1,7 +1,9 @@
 #pragma once
 
+#include <vector>
+
 namespace example {
 
-bool is_odd(int val);
+std::vector<int> fibonacci_sequence(int n);
 
 }  // namespace example
