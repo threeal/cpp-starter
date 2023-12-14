@@ -2,8 +2,8 @@
 
 #include <vector>
 
-namespace example {
+namespace my_fibonacci {
 
 std::vector<int> fibonacci_sequence(int n);
 
-}  // namespace example
+}  // namespace my_fibonacci

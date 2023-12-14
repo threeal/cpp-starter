@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(example)
+project(MyFibonacci)
 
 file(DOWNLOAD https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.38.7/CPM.cmake
      ${CMAKE_BINARY_DIR}/_deps/CPM.cmake EXPECTED_MD5 14ea07dfb484cad5db4ee1c75fd6a911)
@@ -9,10 +9,10 @@ cpmusepackagelock(package-lock)
 
 cpmgetpackage(CheckWarning.cmake)
 
-add_library(example src/example.cpp)
-target_include_directories(example PUBLIC include)
-set_property(TARGET example PROPERTY CXX_STANDARD 11)
-target_check_warning(example)
+add_library(my_fibonacci src/sequence.cpp)
+target_include_directories(my_fibonacci PUBLIC include)
+set_property(TARGET my_fibonacci PROPERTY CXX_STANDARD 11)
+target_check_warning(my_fibonacci)
 
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
   cpmgetpackage(Format.cmake)
@@ -25,9 +25,9 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
 
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage -fPIC -O0")
 
-    add_executable(example_test test/example_test.cpp)
-    target_link_libraries(example_test PRIVATE example Catch2::Catch2WithMain)
-    target_check_warning(example_test)
-    catch_discover_tests(example_test)
+    add_executable(my_fibonacci_test test/sequence_test.cpp)
+    target_link_libraries(my_fibonacci_test PRIVATE my_fibonacci Catch2::Catch2WithMain)
+    target_check_warning(my_fibonacci_test)
+    catch_discover_tests(my_fibonacci_test)
   endif()
 endif()

@@ -1,6 +1,6 @@
-#include <example/example.hpp>
+#include <my_fibonacci/sequence.hpp>
 
-namespace example {
+namespace my_fibonacci {
 
 std::vector<int> fibonacci_sequence(int n) {
   if (n <= 0) return {};
@@ -17,4 +17,4 @@ std::vector<int> fibonacci_sequence(int n) {
   return sequence;
 }
 
-}  // namespace example
+}  // namespace my_fibonacci
