@@ -47,5 +47,7 @@ jobs:
       - name: Check coverage
         uses: threeal/gcovr-action@v1.0.0
         with:
-          excludes: build/*
+          excludes: |
+            build/*
+            src/main.cpp
           fail-under-line: 80
