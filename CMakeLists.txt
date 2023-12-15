@@ -20,27 +20,25 @@ target_link_libraries(my_fibonacci_main PUBLIC argparse my_fibonacci)
 set_property(TARGET my_fibonacci_main PROPERTY CXX_STANDARD 11)
 target_check_warning(my_fibonacci_main)
 
-if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
+  enable_testing()
+
   cpmgetpackage(Format.cmake)
 
-  if(BUILD_TESTING)
-    enable_testing()
+  cpmgetpackage(Catch2)
+  include("${Catch2_SOURCE_DIR}/extras/Catch.cmake")
 
-    cpmgetpackage(Catch2)
-    include("${Catch2_SOURCE_DIR}/extras/Catch.cmake")
+  get_target_property(my_fibonacci_SOURCES my_fibonacci SOURCES)
+  add_executable(my_fibonacci_test test/sequence_test.cpp ${my_fibonacci_SOURCES})
 
-    get_target_property(my_fibonacci_SOURCES my_fibonacci SOURCES)
-    add_executable(my_fibonacci_test test/sequence_test.cpp ${my_fibonacci_SOURCES})
+  get_target_property(my_fibonacci_INCLUDES my_fibonacci INCLUDE_DIRECTORIES)
+  target_include_directories(my_fibonacci_test PRIVATE ${my_fibonacci_INCLUDES})
 
-    get_target_property(my_fibonacci_INCLUDES my_fibonacci INCLUDE_DIRECTORIES)
-    target_include_directories(my_fibonacci_test PRIVATE ${my_fibonacci_INCLUDES})
+  target_link_libraries(my_fibonacci_test PRIVATE Catch2::Catch2WithMain)
 
-    target_link_libraries(my_fibonacci_test PRIVATE Catch2::Catch2WithMain)
+  target_check_warning(my_fibonacci_test)
+  target_compile_options(my_fibonacci_test PRIVATE --coverage -O0)
+  target_link_options(my_fibonacci_test PRIVATE --coverage)
 
-    target_check_warning(my_fibonacci_test)
-    target_compile_options(my_fibonacci_test PRIVATE --coverage -O0)
-    target_link_options(my_fibonacci_test PRIVATE --coverage)
-
-    catch_discover_tests(my_fibonacci_test)
-  endif()
+  catch_discover_tests(my_fibonacci_test)
 endif()
