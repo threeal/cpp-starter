@@ -1,6 +1,10 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.12)
 
-project(MyFibonacci)
+project(
+  MyFibonacci
+  VERSION 0.0.0
+  DESCRIPTION "A starter C++ project for generating a Fibonacci sequence."
+  HOMEPAGE_URL https://github.com/threeal/cpp-starter)
 
 # Disable testing build if built as a subproject.
 if(NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
