@@ -7,12 +7,18 @@ file(DOWNLOAD https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.38.7/C
 include(${CMAKE_BINARY_DIR}/_deps/CPM.cmake)
 cpmusepackagelock(package-lock)
 
+cpmgetpackage(argparse)
 cpmgetpackage(CheckWarning.cmake)
 
 add_library(my_fibonacci src/sequence.cpp)
 target_include_directories(my_fibonacci PUBLIC include)
 set_property(TARGET my_fibonacci PROPERTY CXX_STANDARD 11)
 target_check_warning(my_fibonacci)
+
+add_executable(my_fibonacci_main src/main.cpp)
+target_link_libraries(my_fibonacci_main PUBLIC argparse my_fibonacci)
+set_property(TARGET my_fibonacci_main PROPERTY CXX_STANDARD 11)
+target_check_warning(my_fibonacci_main)
 
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
   cpmgetpackage(Format.cmake)
