@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.5)
 
 project(MyFibonacci)
 
+# Disable testing build if built as a subproject.
+if(NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+  set(BUILD_TESTING OFF)
+endif()
+
 file(DOWNLOAD https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.38.7/CPM.cmake
      ${CMAKE_BINARY_DIR}/_deps/CPM.cmake EXPECTED_MD5 14ea07dfb484cad5db4ee1c75fd6a911)
 include(${CMAKE_BINARY_DIR}/_deps/CPM.cmake)
@@ -20,7 +25,7 @@ target_link_libraries(my_fibonacci_main PUBLIC argparse my_fibonacci)
 set_property(TARGET my_fibonacci_main PROPERTY CXX_STANDARD 11)
 target_check_warning(my_fibonacci_main)
 
-if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
+if(BUILD_TESTING)
   enable_testing()
 
   cpmgetpackage(Format.cmake)
