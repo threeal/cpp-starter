@@ -29,8 +29,13 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
     cpmgetpackage(Catch2)
     include("${Catch2_SOURCE_DIR}/extras/Catch.cmake")
 
-    add_executable(my_fibonacci_test test/sequence_test.cpp)
-    target_link_libraries(my_fibonacci_test PRIVATE my_fibonacci Catch2::Catch2WithMain)
+    get_target_property(my_fibonacci_SOURCES my_fibonacci SOURCES)
+    add_executable(my_fibonacci_test test/sequence_test.cpp ${my_fibonacci_SOURCES})
+
+    get_target_property(my_fibonacci_INCLUDES my_fibonacci INCLUDE_DIRECTORIES)
+    target_include_directories(my_fibonacci_test PRIVATE ${my_fibonacci_INCLUDES})
+
+    target_link_libraries(my_fibonacci_test PRIVATE Catch2::Catch2WithMain)
 
     target_check_warning(my_fibonacci_test)
     target_compile_options(my_fibonacci_test PRIVATE --coverage -O0)
