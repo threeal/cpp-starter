@@ -25,7 +25,13 @@ cpmgetpackage(argparse)
 cpmgetpackage(CheckWarning.cmake)
 
 add_library(my_fibonacci src/sequence.cpp)
-target_include_directories(my_fibonacci PUBLIC include)
+
+target_sources(
+  my_fibonacci PUBLIC FILE_SET HEADERS
+  BASE_DIRS include
+  FILES include/my_fibonacci/sequence.hpp
+)
+
 set_property(TARGET my_fibonacci PROPERTY CXX_STANDARD 11)
 if(BUILD_TESTING)
   target_check_warning(my_fibonacci)
@@ -49,8 +55,13 @@ if(BUILD_TESTING)
   get_target_property(my_fibonacci_SOURCES my_fibonacci SOURCES)
   add_executable(my_fibonacci_test test/sequence_test.cpp ${my_fibonacci_SOURCES})
 
-  get_target_property(my_fibonacci_INCLUDES my_fibonacci INCLUDE_DIRECTORIES)
-  target_include_directories(my_fibonacci_test PRIVATE ${my_fibonacci_INCLUDES})
+  get_target_property(my_fibonacci_HEADER_DIRS my_fibonacci HEADER_DIRS)
+  get_target_property(my_fibonacci_HEADER_SET my_fibonacci HEADER_SET)
+  target_sources(
+    my_fibonacci_test PRIVATE FILE_SET HEADERS
+    BASE_DIRS ${my_fibonacci_HEADER_DIRS}
+    FILES ${my_fibonacci_HEADER_SET}
+  )
 
   target_link_libraries(my_fibonacci_test PRIVATE Catch2::Catch2WithMain)
 
