@@ -21,6 +21,8 @@ CPMDeclarePackage(Format.cmake
   GITHUB_REPOSITORY TheLartians/Format.cmake
   SYSTEM YES
   EXCLUDE_FROM_ALL YES
+  OPTIONS
+    "FORMAT_SKIP_CMAKE ON"
 )
 # Catch2
 CPMDeclarePackage(Catch2
