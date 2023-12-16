@@ -71,3 +71,18 @@ if(BUILD_TESTING)
 
   catch_discover_tests(my_fibonacci_test)
 endif()
+
+install(
+  TARGETS my_fibonacci my_fibonacci_main
+  EXPORT my_fibonacci_targets
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
+  FILE_SET HEADERS
+)
+
+install(
+  EXPORT my_fibonacci_targets
+  FILE MyFibonacciTargets.cmake
+  NAMESPACE my_fibonacci::
+  DESTINATION lib/cmake/MyFibonacci
+)
