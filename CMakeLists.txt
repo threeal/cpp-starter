@@ -4,15 +4,20 @@ project(
   MyFibonacci
   VERSION 0.0.0
   DESCRIPTION "A starter C++ project for generating a Fibonacci sequence."
-  HOMEPAGE_URL https://github.com/threeal/cpp-starter)
+  HOMEPAGE_URL https://github.com/threeal/cpp-starter
+)
 
 # Disable testing build if built as a subproject.
 if(NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
   set(BUILD_TESTING OFF)
 endif()
 
-file(DOWNLOAD https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.38.7/CPM.cmake
-     ${CMAKE_BINARY_DIR}/_deps/CPM.cmake EXPECTED_MD5 14ea07dfb484cad5db4ee1c75fd6a911)
+file(
+  DOWNLOAD
+  https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.38.7/CPM.cmake
+  ${CMAKE_BINARY_DIR}/_deps/CPM.cmake
+  EXPECTED_MD5 14ea07dfb484cad5db4ee1c75fd6a911
+)
 include(${CMAKE_BINARY_DIR}/_deps/CPM.cmake)
 cpmusepackagelock(package-lock)
 
