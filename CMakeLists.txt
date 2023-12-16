@@ -86,3 +86,17 @@ install(
   NAMESPACE my_fibonacci::
   DESTINATION lib/cmake/MyFibonacci
 )
+
+include(CMakePackageConfigHelpers)
+
+write_basic_package_version_file(
+  MyFibonacciConfigVersion.cmake
+  COMPATIBILITY SameMajorVersion
+)
+
+install(
+  FILES
+    cmake/MyFibonacciConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/MyFibonacciConfigVersion.cmake
+  DESTINATION lib/cmake/MyFibonacci
+)
