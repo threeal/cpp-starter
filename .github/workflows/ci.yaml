@@ -21,6 +21,11 @@ jobs:
       - name: Install project
         run: cmake --install build --prefix install
 
+      - name: Upload project as artifact
+        uses: actions/upload-artifact@v3.1.3
+        with:
+          path: install
+
   build-testing:
     name: Build Testing
     runs-on: ubuntu-latest
