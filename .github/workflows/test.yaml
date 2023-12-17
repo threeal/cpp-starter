@@ -12,12 +12,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.1
 
-      - name: Configure project
+      - name: Configure Project
         uses: threeal/cmake-action@v1.3.0
         with:
           options: BUILD_TESTING=ON
 
-      - name: Check formatting
+      - name: Check Format
         run: |
           cmake --build build --target format
           git diff --exit-code HEAD
@@ -29,7 +29,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.1
 
-      - name: Configure project
+      - name: Configure Project
         uses: threeal/cmake-action@v1.3.0
         with:
           options: BUILD_TESTING=ON
@@ -40,7 +40,7 @@ jobs:
       - name: Test Project
         run: ctest --test-dir build --output-on-failure --no-tests=error
 
-      - name: Check coverage
+      - name: Check Coverage
         uses: threeal/gcovr-action@v1.0.0
         with:
           excludes: build/*
