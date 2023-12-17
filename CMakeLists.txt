@@ -37,11 +37,11 @@ if(BUILD_TESTING)
   target_check_warning(my_fibonacci)
 endif()
 
-add_executable(my_fibonacci_main src/main.cpp)
-target_link_libraries(my_fibonacci_main PUBLIC argparse my_fibonacci)
-set_property(TARGET my_fibonacci_main PROPERTY CXX_STANDARD 11)
+add_executable(generate_sequence src/main.cpp)
+target_link_libraries(generate_sequence PUBLIC argparse my_fibonacci)
+set_property(TARGET generate_sequence PROPERTY CXX_STANDARD 11)
 if(BUILD_TESTING)
-  target_check_warning(my_fibonacci_main)
+  target_check_warning(generate_sequence)
 endif()
 
 if(BUILD_TESTING)
@@ -73,7 +73,7 @@ if(BUILD_TESTING)
 endif()
 
 install(
-  TARGETS my_fibonacci my_fibonacci_main
+  TARGETS generate_sequence my_fibonacci
   EXPORT my_fibonacci_targets
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin

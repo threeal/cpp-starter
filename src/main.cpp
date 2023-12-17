@@ -4,7 +4,7 @@
 #include <my_fibonacci/sequence.hpp>
 
 int main(int argc, char** argv) {
-  argparse::ArgumentParser program("my_fibonacci_main");
+  argparse::ArgumentParser program("generate_sequence");
   program.add_description(
       "Generate a Fibonacci sequence up to the given number of terms.");
   program.add_argument("n").help("The number of terms").scan<'i', int>();
