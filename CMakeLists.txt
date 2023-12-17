@@ -53,23 +53,23 @@ if(BUILD_TESTING)
   include("${Catch2_SOURCE_DIR}/extras/Catch.cmake")
 
   get_target_property(sequence_SOURCES sequence SOURCES)
-  add_executable(my_fibonacci_test test/sequence_test.cpp ${sequence_SOURCES})
+  add_executable(sequence_test test/sequence_test.cpp ${sequence_SOURCES})
 
   get_target_property(sequence_HEADER_DIRS sequence HEADER_DIRS)
   get_target_property(sequence_HEADER_SET sequence HEADER_SET)
   target_sources(
-    my_fibonacci_test PRIVATE FILE_SET HEADERS
+    sequence_test PRIVATE FILE_SET HEADERS
     BASE_DIRS ${sequence_HEADER_DIRS}
     FILES ${sequence_HEADER_SET}
   )
 
-  target_link_libraries(my_fibonacci_test PRIVATE Catch2::Catch2WithMain)
+  target_link_libraries(sequence_test PRIVATE Catch2::Catch2WithMain)
 
-  target_check_warning(my_fibonacci_test)
-  target_compile_options(my_fibonacci_test PRIVATE --coverage -O0)
-  target_link_options(my_fibonacci_test PRIVATE --coverage)
+  target_check_warning(sequence_test)
+  target_compile_options(sequence_test PRIVATE --coverage -O0)
+  target_link_options(sequence_test PRIVATE --coverage)
 
-  catch_discover_tests(my_fibonacci_test)
+  catch_discover_tests(sequence_test)
 endif()
 
 install(
