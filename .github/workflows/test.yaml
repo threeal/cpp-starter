@@ -5,8 +5,8 @@ on:
   push:
     branches: [main]
 jobs:
-  test-project:
-    name: Test Project
+  check-project:
+    name: Check Project
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,6 +21,18 @@ jobs:
         run: |
           cmake --build build --target format
           git diff --exit-code HEAD
+
+  test-project:
+    name: Test Project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Configure project
+        uses: threeal/cmake-action@v1.3.0
+        with:
+          options: BUILD_TESTING=ON
 
       - name: Build Project
         run: cmake --build build
