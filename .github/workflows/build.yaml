@@ -1,0 +1,27 @@
+name: Build
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  build-Project:
+    name: Build Project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Configure project
+        uses: threeal/cmake-action@v1.3.0
+
+      - name: Build project
+        run: cmake --build build
+
+      - name: Install project
+        run: cmake --install build --prefix install
+
+      - name: Upload project as artifact
+        uses: actions/upload-artifact@v3.1.3
+        with:
+          path: install
