@@ -24,21 +24,21 @@ cpmusepackagelock(package-lock)
 cpmgetpackage(argparse)
 cpmgetpackage(CheckWarning.cmake)
 
-add_library(my_fibonacci src/sequence.cpp)
+add_library(sequence src/sequence.cpp)
 
 target_sources(
-  my_fibonacci PUBLIC FILE_SET HEADERS
+  sequence PUBLIC FILE_SET HEADERS
   BASE_DIRS include
   FILES include/my_fibonacci/sequence.hpp
 )
 
-set_property(TARGET my_fibonacci PROPERTY CXX_STANDARD 11)
+set_property(TARGET sequence PROPERTY CXX_STANDARD 11)
 if(BUILD_TESTING)
-  target_check_warning(my_fibonacci)
+  target_check_warning(sequence)
 endif()
 
 add_executable(generate_sequence src/main.cpp)
-target_link_libraries(generate_sequence PUBLIC argparse my_fibonacci)
+target_link_libraries(generate_sequence PUBLIC argparse sequence)
 set_property(TARGET generate_sequence PROPERTY CXX_STANDARD 11)
 if(BUILD_TESTING)
   target_check_warning(generate_sequence)
@@ -52,15 +52,15 @@ if(BUILD_TESTING)
   cpmgetpackage(Catch2)
   include("${Catch2_SOURCE_DIR}/extras/Catch.cmake")
 
-  get_target_property(my_fibonacci_SOURCES my_fibonacci SOURCES)
-  add_executable(my_fibonacci_test test/sequence_test.cpp ${my_fibonacci_SOURCES})
+  get_target_property(sequence_SOURCES sequence SOURCES)
+  add_executable(my_fibonacci_test test/sequence_test.cpp ${sequence_SOURCES})
 
-  get_target_property(my_fibonacci_HEADER_DIRS my_fibonacci HEADER_DIRS)
-  get_target_property(my_fibonacci_HEADER_SET my_fibonacci HEADER_SET)
+  get_target_property(sequence_HEADER_DIRS sequence HEADER_DIRS)
+  get_target_property(sequence_HEADER_SET sequence HEADER_SET)
   target_sources(
     my_fibonacci_test PRIVATE FILE_SET HEADERS
-    BASE_DIRS ${my_fibonacci_HEADER_DIRS}
-    FILES ${my_fibonacci_HEADER_SET}
+    BASE_DIRS ${sequence_HEADER_DIRS}
+    FILES ${sequence_HEADER_SET}
   )
 
   target_link_libraries(my_fibonacci_test PRIVATE Catch2::Catch2WithMain)
@@ -73,7 +73,7 @@ if(BUILD_TESTING)
 endif()
 
 install(
-  TARGETS generate_sequence my_fibonacci
+  TARGETS generate_sequence sequence
   EXPORT my_fibonacci_targets
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
