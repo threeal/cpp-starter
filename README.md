@@ -1,5 +1,7 @@
 # C++ Starter
 
+[![version](https://img.shields.io/github/v/release/threeal/cpp-starter?style=flat-square)](https://github.com/threeal/cpp-starter/releases)
+[![license](https://img.shields.io/github/license/threeal/cpp-starter?style=flat-square)](./LICENSE)
 [![build status](https://img.shields.io/github/actions/workflow/status/threeal/cpp-starter/build.yaml?branch=main&style=flat-square)](https://github.com/threeal/cpp-starter/actions/workflows/build.yaml)
 [![test status](https://img.shields.io/github/actions/workflow/status/threeal/cpp-starter/test.yaml?branch=main&label=test&style=flat-square)](https://github.com/threeal/cpp-starter/actions/workflows/test.yaml)
 
