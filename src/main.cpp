@@ -1,5 +1,4 @@
 #include <argparse/argparse.hpp>
-#include <cstdlib>
 #include <iostream>
 #include <my_fibonacci/sequence.hpp>
 
