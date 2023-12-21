@@ -22,30 +22,24 @@ include(${CMAKE_BINARY_DIR}/_deps/CPM.cmake)
 cpmusepackagelock(package-lock)
 
 cpmgetpackage(argparse)
-cpmgetpackage(CheckWarning.cmake)
 
 add_library(sequence src/sequence.cpp)
-
 target_sources(
   sequence PUBLIC FILE_SET HEADERS
   BASE_DIRS include
   FILES include/my_fibonacci/sequence.hpp
 )
-
 set_property(TARGET sequence PROPERTY CXX_STANDARD 11)
-if(BUILD_TESTING)
-  target_check_warning(sequence)
-endif()
 
 add_executable(generate_sequence src/main.cpp)
 target_link_libraries(generate_sequence PUBLIC argparse sequence)
 set_property(TARGET generate_sequence PROPERTY CXX_STANDARD 11)
-if(BUILD_TESTING)
-  target_check_warning(generate_sequence)
-endif()
 
 if(BUILD_TESTING)
   enable_testing()
+
+  cpmgetpackage(CheckWarning.cmake)
+  add_check_warning()
 
   cpmgetpackage(Format.cmake)
 
@@ -65,7 +59,6 @@ if(BUILD_TESTING)
 
   target_link_libraries(sequence_test PRIVATE Catch2::Catch2WithMain)
 
-  target_check_warning(sequence_test)
   target_compile_options(sequence_test PRIVATE --coverage -O0)
   target_link_options(sequence_test PRIVATE --coverage)
 
