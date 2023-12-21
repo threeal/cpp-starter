@@ -7,11 +7,6 @@ project(
   HOMEPAGE_URL https://github.com/threeal/cpp-starter
 )
 
-# Disable testing build if built as a subproject.
-if(NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
-  set(BUILD_TESTING OFF)
-endif()
-
 file(
   DOWNLOAD
   https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.38.7/CPM.cmake
@@ -35,7 +30,7 @@ add_executable(generate_sequence src/main.cpp)
 target_link_libraries(generate_sequence PUBLIC argparse sequence)
 set_property(TARGET generate_sequence PROPERTY CXX_STANDARD 11)
 
-if(BUILD_TESTING)
+if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
   enable_testing()
 
   cpmgetpackage(CheckWarning.cmake)
