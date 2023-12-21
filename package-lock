@@ -10,7 +10,7 @@ CPMDeclarePackage(argparse
 )
 # CheckWarning.cmake
 CPMDeclarePackage(CheckWarning.cmake
-  VERSION 1.0.0
+  VERSION 2.0.0
   GITHUB_REPOSITORY threeal/CheckWarning.cmake
   SYSTEM YES
   EXCLUDE_FROM_ALL YES
