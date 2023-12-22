@@ -7,11 +7,6 @@ project(
   HOMEPAGE_URL https://github.com/threeal/cpp-starter
 )
 
-# Disable testing build if built as a subproject.
-if(NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
-  set(BUILD_TESTING OFF)
-endif()
-
 file(
   DOWNLOAD
   https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.38.7/CPM.cmake
@@ -22,30 +17,24 @@ include(${CMAKE_BINARY_DIR}/_deps/CPM.cmake)
 cpmusepackagelock(package-lock)
 
 cpmgetpackage(argparse)
-cpmgetpackage(CheckWarning.cmake)
 
 add_library(sequence src/sequence.cpp)
-
 target_sources(
   sequence PUBLIC FILE_SET HEADERS
   BASE_DIRS include
   FILES include/my_fibonacci/sequence.hpp
 )
-
 set_property(TARGET sequence PROPERTY CXX_STANDARD 11)
-if(BUILD_TESTING)
-  target_check_warning(sequence)
-endif()
 
 add_executable(generate_sequence src/main.cpp)
 target_link_libraries(generate_sequence PUBLIC argparse sequence)
 set_property(TARGET generate_sequence PROPERTY CXX_STANDARD 11)
-if(BUILD_TESTING)
-  target_check_warning(generate_sequence)
-endif()
 
-if(BUILD_TESTING)
+if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
   enable_testing()
+
+  cpmgetpackage(CheckWarning.cmake)
+  add_check_warning()
 
   cpmgetpackage(Format.cmake)
 
@@ -65,7 +54,6 @@ if(BUILD_TESTING)
 
   target_link_libraries(sequence_test PRIVATE Catch2::Catch2WithMain)
 
-  target_check_warning(sequence_test)
   target_compile_options(sequence_test PRIVATE --coverage -O0)
   target_link_options(sequence_test PRIVATE --coverage)
 
