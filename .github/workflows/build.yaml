@@ -11,19 +11,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - os: ubuntu
-            cxx: g++
-          - os: windows
-            cxx: cl
+        os: [ubuntu, windows]
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
 
       - name: Configure Project
         uses: threeal/cmake-action@v1.3.0
-        with:
-          cxx-compiler: ${{ matrix.cxx }}
 
       - name: Build Project
         run: cmake --build build --config Release
