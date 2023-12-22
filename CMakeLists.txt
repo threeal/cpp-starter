@@ -24,7 +24,7 @@ target_sources(
   BASE_DIRS include
   FILES include/my_fibonacci/sequence.hpp
 )
-set_property(TARGET sequence PROPERTY CXX_STANDARD 11)
+target_compile_features(sequence PRIVATE cxx_std_11)
 
 add_executable(generate_sequence src/main.cpp)
 target_link_libraries(generate_sequence PUBLIC argparse sequence)
