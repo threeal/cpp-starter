@@ -7,13 +7,23 @@ on:
 jobs:
   build-Project:
     name: Build Project
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu
+            cxx: g++
+          - os: windows
+            cxx: cl
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
 
       - name: Configure Project
         uses: threeal/cmake-action@v1.3.0
+        with:
+          cxx-compiler: ${{ matrix.cxx }}
 
       - name: Build Project
         run: cmake --build build
