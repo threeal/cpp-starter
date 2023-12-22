@@ -7,7 +7,11 @@ on:
 jobs:
   build-Project:
     name: Build Project
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu, windows]
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
@@ -16,7 +20,7 @@ jobs:
         uses: threeal/cmake-action@v1.3.0
 
       - name: Build Project
-        run: cmake --build build
+        run: cmake --build build --config Release
 
       - name: Install Project
         run: cmake --install build --prefix install
@@ -24,4 +28,5 @@ jobs:
       - name: Upload Project as Artifact
         uses: actions/upload-artifact@v4.0.0
         with:
+          name: package-${{ matrix.os }}
           path: install
