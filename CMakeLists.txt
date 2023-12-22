@@ -28,7 +28,6 @@ set_property(TARGET sequence PROPERTY CXX_STANDARD 11)
 
 add_executable(generate_sequence src/main.cpp)
 target_link_libraries(generate_sequence PUBLIC argparse sequence)
-set_property(TARGET generate_sequence PROPERTY CXX_STANDARD 11)
 
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
   enable_testing()
