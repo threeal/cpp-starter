@@ -26,7 +26,7 @@ jobs:
           cxx-compiler: ${{ matrix.cxx }}
 
       - name: Build Project
-        run: cmake --build build
+        run: cmake --build build --config Release
 
       - name: Install Project
         run: cmake --install build --prefix install
