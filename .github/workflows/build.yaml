@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
 jobs:
-  build-Project:
+  build-project:
     name: Build Project
     runs-on: ${{ matrix.os }}-latest
     strategy:
