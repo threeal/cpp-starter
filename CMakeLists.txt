@@ -54,7 +54,7 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
   target_link_libraries(sequence_test PRIVATE Catch2::Catch2WithMain)
 
   if(NOT MSVC)
-    target_compile_options(sequence_test PRIVATE --coverage -O0)
+    target_compile_options(sequence_test PRIVATE --coverage -O0 -fno-exceptions)
     target_link_options(sequence_test PRIVATE --coverage)
   endif()
 
