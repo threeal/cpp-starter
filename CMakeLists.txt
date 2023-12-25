@@ -56,6 +56,15 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
   if(NOT MSVC)
     target_compile_options(sequence_test PRIVATE --coverage -O0 -fno-exceptions)
     target_link_options(sequence_test PRIVATE --coverage)
+
+    get_target_property(sequence_test_SOURCES sequence_test SOURCES)
+    foreach(SOURCE ${sequence_test_SOURCES})
+      set(GCDA ${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/sequence_test.dir/${SOURCE}.gcda)
+      add_custom_command(
+        TARGET sequence_test PRE_LINK
+        COMMAND ${CMAKE_COMMAND} -E rm -f ${GCDA}
+      )
+    endforeach()
   endif()
 
   catch_discover_tests(sequence_test)
