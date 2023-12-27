@@ -20,7 +20,8 @@ cpmgetpackage(argparse)
 
 add_library(sequence src/sequence.cpp)
 target_sources(
-  sequence PUBLIC FILE_SET HEADERS
+  sequence PUBLIC
+  FILE_SET HEADERS
   BASE_DIRS include
   FILES include/my_fibonacci/sequence.hpp
 )
