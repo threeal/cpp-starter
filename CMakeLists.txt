@@ -41,16 +41,10 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
   include("${Catch2_SOURCE_DIR}/extras/Catch.cmake")
 
   get_target_property(sequence_SOURCES sequence SOURCES)
-  add_executable(sequence_test test/sequence_test.cpp ${sequence_SOURCES})
-
   get_target_property(sequence_HEADER_DIRS sequence HEADER_DIRS)
-  get_target_property(sequence_HEADER_SET sequence HEADER_SET)
-  target_sources(
-    sequence_test PRIVATE FILE_SET HEADERS
-    BASE_DIRS ${sequence_HEADER_DIRS}
-    FILES ${sequence_HEADER_SET}
-  )
 
+  add_executable(sequence_test test/sequence_test.cpp ${sequence_SOURCES})
+  target_include_directories(sequence_test PRIVATE ${sequence_HEADER_DIRS})
   target_link_libraries(sequence_test PRIVATE Catch2::Catch2WithMain)
 
   if(NOT MSVC)
