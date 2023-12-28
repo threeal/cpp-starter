@@ -5,6 +5,7 @@ project(
   VERSION 0.0.0
   DESCRIPTION "A starter C++ project for generating a Fibonacci sequence."
   HOMEPAGE_URL https://github.com/threeal/cpp-starter
+  LANGUAGES CXX
 )
 
 file(
