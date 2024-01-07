@@ -11,7 +11,6 @@ project(
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 include(CPM)
-cpmusepackagelock(package-lock)
 
 cpmgetpackage(argparse)
 
