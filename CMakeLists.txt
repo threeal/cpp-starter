@@ -29,7 +29,7 @@ target_link_libraries(generate_sequence PUBLIC argparse::argparse sequence)
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
   enable_testing()
 
-  cpmgetpackage(CheckWarning.cmake)
+  find_package(CheckWarning REQUIRED)
   add_check_warning()
 
   cpmgetpackage(Format.cmake)
