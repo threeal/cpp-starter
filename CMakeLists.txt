@@ -10,8 +10,6 @@ project(
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
-include(CPM)
-
 find_package(argparse REQUIRED)
 
 add_library(sequence src/sequence.cpp)
