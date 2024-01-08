@@ -12,7 +12,7 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 include(CPM)
 
-cpmgetpackage(argparse)
+find_package(argparse REQUIRED)
 
 add_library(sequence src/sequence.cpp)
 target_sources(
@@ -24,7 +24,7 @@ target_sources(
 target_compile_features(sequence PRIVATE cxx_std_11)
 
 add_executable(generate_sequence src/main.cpp)
-target_link_libraries(generate_sequence PUBLIC argparse sequence)
+target_link_libraries(generate_sequence PUBLIC argparse::argparse sequence)
 
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
   enable_testing()
