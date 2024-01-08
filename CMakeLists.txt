@@ -32,7 +32,7 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
   find_package(CheckWarning REQUIRED)
   add_check_warning()
 
-  cpmgetpackage(Format.cmake)
+  find_package(Format REQUIRED)
 
   cpmgetpackage(Catch2)
   include("${Catch2_SOURCE_DIR}/extras/Catch.cmake")
