@@ -34,8 +34,7 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
 
   find_package(Format REQUIRED)
 
-  cpmgetpackage(Catch2)
-  include("${Catch2_SOURCE_DIR}/extras/Catch.cmake")
+  find_package(Catch2 REQUIRED)
 
   get_target_property(sequence_SOURCES sequence SOURCES)
   get_target_property(sequence_HEADER_DIRS sequence HEADER_DIRS)
@@ -47,6 +46,7 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
   include(CheckCoverage)
   target_check_coverage(sequence_test)
 
+  include(Catch)
   catch_discover_tests(sequence_test)
 endif()
 
