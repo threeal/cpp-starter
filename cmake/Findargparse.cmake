@@ -8,4 +8,4 @@ if(argparse_FOUND)
 endif()
 
 include(CPM)
-cpmgetpackage(argparse)
+cpm_add_argparse()

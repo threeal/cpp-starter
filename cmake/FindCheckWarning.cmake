@@ -1,2 +1,2 @@
 include(CPM)
-cpmgetpackage(CheckWarning.cmake)
+cpm_add_check_warning()

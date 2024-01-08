@@ -7,35 +7,23 @@ file(
 
 include(${CMAKE_BINARY_DIR}/_deps/CPM.cmake)
 
-cpmdeclarepackage(
-  argparse
-  VERSION 3.0
-  GITHUB_REPOSITORY p-ranav/argparse
-  SYSTEM YES
-  EXCLUDE_FROM_ALL YES
-)
+function(cpm_add_argparse)
+  cpmaddpackage(gh:p-ranav/argparse@3.0)
+endfunction()
 
-cpmdeclarepackage(
-  CheckWarning.cmake
-  VERSION 2.0.1
-  GITHUB_REPOSITORY threeal/CheckWarning.cmake
-  SYSTEM YES
-  EXCLUDE_FROM_ALL YES
-)
+function(cpm_add_check_warning)
+  cpmaddpackage(gh:threeal/CheckWarning.cmake@2.0.1)
+endfunction()
 
-cpmdeclarepackage(
-  Format.cmake
-  VERSION 1.7.3
-  GITHUB_REPOSITORY TheLartians/Format.cmake
-  SYSTEM YES
-  EXCLUDE_FROM_ALL YES
-  OPTIONS "FORMAT_SKIP_CMAKE ON"
-)
+function(cpm_add_format)
+  cpmaddpackage(
+    Format.cmake
+    VERSION 1.7.3
+    GITHUB_REPOSITORY TheLartians/Format.cmake
+    OPTIONS "FORMAT_SKIP_CMAKE ON"
+  )
+endfunction()
 
-cpmdeclarepackage(
-  Catch2
-  VERSION 3.5.1
-  GITHUB_REPOSITORY catchorg/Catch2
-  SYSTEM YES
-  EXCLUDE_FROM_ALL YES
-)
+function(cpm_add_catch2)
+  cpmaddpackage(gh:catchorg/Catch2@3.5.1)
+endfunction()

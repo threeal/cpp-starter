@@ -1,2 +1,2 @@
 include(CPM)
-cpmgetpackage(Format.cmake)
+cpm_add_format()
