@@ -10,9 +10,7 @@ project(
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
-include(CPM)
-
-cpmgetpackage(argparse)
+find_package(argparse REQUIRED)
 
 add_library(sequence src/sequence.cpp)
 target_sources(
@@ -24,18 +22,17 @@ target_sources(
 target_compile_features(sequence PRIVATE cxx_std_11)
 
 add_executable(generate_sequence src/main.cpp)
-target_link_libraries(generate_sequence PUBLIC argparse sequence)
+target_link_libraries(generate_sequence PUBLIC argparse::argparse sequence)
 
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
   enable_testing()
 
-  cpmgetpackage(CheckWarning.cmake)
+  find_package(CheckWarning REQUIRED)
   add_check_warning()
 
-  cpmgetpackage(Format.cmake)
+  find_package(Format REQUIRED)
 
-  cpmgetpackage(Catch2)
-  include("${Catch2_SOURCE_DIR}/extras/Catch.cmake")
+  find_package(Catch2 REQUIRED)
 
   get_target_property(sequence_SOURCES sequence SOURCES)
   get_target_property(sequence_HEADER_DIRS sequence HEADER_DIRS)
@@ -47,6 +44,7 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
   include(CheckCoverage)
   target_check_coverage(sequence_test)
 
+  include(Catch)
   catch_discover_tests(sequence_test)
 endif()
 
