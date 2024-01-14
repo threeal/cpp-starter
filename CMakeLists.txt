@@ -28,6 +28,7 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
   enable_testing()
 
   find_package(CheckWarning REQUIRED)
+  include(CheckWarning)
   add_check_warning()
 
   find_package(Format REQUIRED)
