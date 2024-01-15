@@ -19,15 +19,6 @@ function(cpm_add_fix_format)
   cpmaddpackage(gh:threeal/FixFormat.cmake@1.0.0)
 endfunction()
 
-function(cpm_add_format)
-  cpmaddpackage(
-    Format.cmake
-    VERSION 1.7.3
-    GITHUB_REPOSITORY TheLartians/Format.cmake
-    OPTIONS "FORMAT_SKIP_CMAKE ON"
-  )
-endfunction()
-
 function(cpm_add_catch2)
   cpmaddpackage(gh:catchorg/Catch2@3.5.1)
 endfunction()

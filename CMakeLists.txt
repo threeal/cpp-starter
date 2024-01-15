@@ -36,8 +36,6 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
   target_fix_format(sequence)
   target_fix_format(generate_sequence)
 
-  find_package(Format REQUIRED)
-
   find_package(Catch2 REQUIRED)
 
   get_target_property(sequence_SOURCES sequence SOURCES)
