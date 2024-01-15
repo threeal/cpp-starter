@@ -51,6 +51,9 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
 
   include(Catch)
   catch_discover_tests(sequence_test)
+
+  add_custom_target(format)
+  add_dependencies(format sequence_format generate_sequence_format sequence_test_format)
 endif()
 
 install(
