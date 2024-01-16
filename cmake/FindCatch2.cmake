@@ -8,6 +8,6 @@ if(Catch2_FOUND)
 endif()
 
 include(CPM)
-cpm_add_catch2()
+cpmaddpackage(gh:catchorg/Catch2@3.5.2)
 
 list(APPEND CMAKE_MODULE_PATH ${Catch2_SOURCE_DIR}/extras)
