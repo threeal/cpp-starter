@@ -20,5 +20,5 @@ function(cpm_add_fix_format)
 endfunction()
 
 function(cpm_add_catch2)
-  cpmaddpackage(gh:catchorg/Catch2@3.5.1)
+  cpmaddpackage(gh:catchorg/Catch2@3.5.2)
 endfunction()
