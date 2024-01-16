@@ -31,7 +31,10 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
   include(CheckWarning)
   add_check_warning()
 
-  find_package(Format REQUIRED)
+  find_package(FixFormat REQUIRED)
+  include(FixFormat)
+  target_fix_format(sequence)
+  target_fix_format(generate_sequence)
 
   find_package(Catch2 REQUIRED)
 
@@ -44,9 +47,13 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND BUILD_TESTING)
 
   include(CheckCoverage)
   target_check_coverage(sequence_test)
+  target_fix_format(sequence_test)
 
   include(Catch)
   catch_discover_tests(sequence_test)
+
+  add_custom_target(format)
+  add_dependencies(format sequence_format generate_sequence_format sequence_test_format)
 endif()
 
 install(

@@ -15,13 +15,8 @@ function(cpm_add_check_warning)
   cpmaddpackage(gh:threeal/CheckWarning.cmake@2.1.0)
 endfunction()
 
-function(cpm_add_format)
-  cpmaddpackage(
-    Format.cmake
-    VERSION 1.7.3
-    GITHUB_REPOSITORY TheLartians/Format.cmake
-    OPTIONS "FORMAT_SKIP_CMAKE ON"
-  )
+function(cpm_add_fix_format)
+  cpmaddpackage(gh:threeal/FixFormat.cmake@1.0.0)
 endfunction()
 
 function(cpm_add_catch2)
