@@ -8,4 +8,4 @@ if(argparse_FOUND)
 endif()
 
 include(CPM)
-cpm_add_argparse()
+cpmaddpackage(gh:p-ranav/argparse@3.0)

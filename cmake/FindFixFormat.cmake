@@ -8,6 +8,6 @@ if(FixFormat_FOUND)
 endif()
 
 include(CPM)
-cpm_add_fix_format()
+cpmaddpackage(gh:threeal/FixFormat.cmake@1.0.0)
 
 list(APPEND CMAKE_MODULE_PATH ${FixFormat_SOURCE_DIR}/cmake)
