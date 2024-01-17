@@ -1,3 +1,5 @@
+include_guard(GLOBAL)
+
 function(target_check_coverage TARGET)
   if(MSVC)
     message(WARNING "Test coverage check is not available on MSVC")
