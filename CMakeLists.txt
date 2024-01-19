@@ -13,7 +13,11 @@ if(NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
   set(SUBPROJECT TRUE)
 endif()
 
+# Append the module path and export to the parent scope if is a subproject.
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+if(SUBPROJECT)
+  set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} PARENT_SCOPE)
+endif()
 
 find_package(argparse REQUIRED)
 
