@@ -8,6 +8,11 @@ project(
   LANGUAGES CXX
 )
 
+# Check if this project is a subproject of another project.
+if(NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+  set(SUBPROJECT TRUE)
+endif()
+
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 find_package(argparse REQUIRED)
@@ -24,7 +29,7 @@ target_compile_features(sequence PRIVATE cxx_std_11)
 add_executable(generate_sequence src/main.cpp)
 target_link_libraries(generate_sequence PUBLIC argparse::argparse sequence)
 
-if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+if(NOT SUBPROJECT)
   if(BUILD_TESTING)
     enable_testing()
 
