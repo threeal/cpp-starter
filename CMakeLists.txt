@@ -19,6 +19,13 @@ if(SUBPROJECT)
   set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} PARENT_SCOPE)
 endif()
 
+# Enable warning checks if it is not a subproject and testing is enabled.
+if(NOT SUBPROJECT AND BUILD_TESTING)
+  find_package(CheckWarning REQUIRED)
+  include(CheckWarning)
+  add_check_warning()
+endif()
+
 find_package(argparse REQUIRED)
 
 add_library(sequence src/sequence.cpp)
@@ -36,10 +43,6 @@ target_link_libraries(generate_sequence PUBLIC argparse::argparse sequence)
 if(NOT SUBPROJECT)
   if(BUILD_TESTING)
     enable_testing()
-
-    find_package(CheckWarning REQUIRED)
-    include(CheckWarning)
-    add_check_warning()
 
     find_package(Catch2 REQUIRED)
 
