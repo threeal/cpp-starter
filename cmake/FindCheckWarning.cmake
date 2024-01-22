@@ -8,6 +8,6 @@ if(CheckWarning_FOUND)
 endif()
 
 include(CPM)
-cpmaddpackage(gh:threeal/CheckWarning.cmake@2.1.0)
+cpmaddpackage(gh:threeal/CheckWarning.cmake@2.1.1)
 
 list(APPEND CMAKE_MODULE_PATH ${CheckWarning_SOURCE_DIR}/cmake)
