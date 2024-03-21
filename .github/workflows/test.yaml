@@ -42,7 +42,7 @@ jobs:
         run: cmake --build build
 
       - name: Test Project
-        run: ctest --test-dir build --output-on-failure --no-tests=error
+        uses: threeal/ctest-action@v1.0.0
 
       - name: Check Coverage
         if: ${{ matrix.os != 'windows' }}
