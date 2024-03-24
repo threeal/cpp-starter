@@ -26,7 +26,11 @@ if(NOT SUBPROJECT AND BUILD_TESTING)
   add_check_warning()
 endif()
 
-find_package(argparse REQUIRED)
+find_package(argparse QUIET)
+if(NOT argparse_FOUND)
+  include(CPM)
+  cpmaddpackage(gh:p-ranav/argparse@3.0)
+endif()
 
 add_library(sequence src/sequence.cpp)
 target_sources(
