@@ -19,14 +19,33 @@ if(SUBPROJECT)
   set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} PARENT_SCOPE)
 endif()
 
+function(get_cpm)
+  file(
+    DOWNLOAD
+    https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.38.7/CPM.cmake
+    ${CMAKE_BINARY_DIR}/_deps/CPM.cmake
+    EXPECTED_MD5 14ea07dfb484cad5db4ee1c75fd6a911
+  )
+  include(${CMAKE_BINARY_DIR}/_deps/CPM.cmake)
+endfunction()
+
 # Enable warning checks if it is not a subproject and testing is enabled.
 if(NOT SUBPROJECT AND BUILD_TESTING)
-  find_package(CheckWarning REQUIRED)
+  find_package(CheckWarning QUIET)
+  if(NOT CheckWarning_FOUND)
+    get_cpm()
+    cpmaddpackage(gh:threeal/CheckWarning.cmake@2.1.1)
+    list(APPEND CMAKE_MODULE_PATH ${CheckWarning_SOURCE_DIR}/cmake)
+  endif()
   include(CheckWarning)
   add_check_warning()
 endif()
 
-find_package(argparse REQUIRED)
+find_package(argparse QUIET)
+if(NOT argparse_FOUND)
+  get_cpm()
+  cpmaddpackage(gh:p-ranav/argparse@3.0)
+endif()
 
 add_library(sequence src/sequence.cpp)
 target_sources(
@@ -44,7 +63,12 @@ target_link_libraries(generate_sequence PUBLIC argparse::argparse sequence)
 if(NOT SUBPROJECT AND BUILD_TESTING)
   enable_testing()
 
-  find_package(Catch2 REQUIRED)
+  find_package(Catch2 QUIET)
+  if(NOT Catch2_FOUND)
+    get_cpm()
+    cpmaddpackage(gh:catchorg/Catch2@3.5.3)
+    list(APPEND CMAKE_MODULE_PATH ${Catch2_SOURCE_DIR}/extras)
+  endif()
 
   get_target_property(sequence_SOURCES sequence SOURCES)
   get_target_property(sequence_HEADER_DIRS sequence HEADER_DIRS)
@@ -62,7 +86,12 @@ endif()
 
 # Enable automatic formatting if it is not a subproject and testing is enabled.
 if(NOT SUBPROJECT AND BUILD_TESTING)
-  find_package(FixFormat REQUIRED)
+  find_package(FixFormat QUIET)
+  if(NOT FixFormat_FOUND)
+    get_cpm()
+    cpmaddpackage(gh:threeal/FixFormat.cmake@1.1.1)
+    list(APPEND CMAKE_MODULE_PATH ${FixFormat_SOURCE_DIR}/cmake)
+  endif()
   include(FixFormat)
   add_fix_format()
 endif()
