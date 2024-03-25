@@ -48,7 +48,12 @@ target_link_libraries(generate_sequence PUBLIC argparse::argparse sequence)
 if(NOT SUBPROJECT AND BUILD_TESTING)
   enable_testing()
 
-  find_package(Catch2 REQUIRED)
+  find_package(Catch2 QUIET)
+  if(NOT Catch2_FOUND)
+    include(CPM)
+    cpmaddpackage(gh:catchorg/Catch2@3.5.3)
+    list(APPEND CMAKE_MODULE_PATH ${Catch2_SOURCE_DIR}/extras)
+  endif()
 
   get_target_property(sequence_SOURCES sequence SOURCES)
   get_target_property(sequence_HEADER_DIRS sequence HEADER_DIRS)
