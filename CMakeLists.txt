@@ -19,11 +19,21 @@ if(SUBPROJECT)
   set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} PARENT_SCOPE)
 endif()
 
+function(get_cpm)
+  file(
+    DOWNLOAD
+    https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.38.7/CPM.cmake
+    ${CMAKE_BINARY_DIR}/_deps/CPM.cmake
+    EXPECTED_MD5 14ea07dfb484cad5db4ee1c75fd6a911
+  )
+  include(${CMAKE_BINARY_DIR}/_deps/CPM.cmake)
+endfunction()
+
 # Enable warning checks if it is not a subproject and testing is enabled.
 if(NOT SUBPROJECT AND BUILD_TESTING)
   find_package(CheckWarning QUIET)
   if(NOT CheckWarning_FOUND)
-    include(CPM)
+    get_cpm()
     cpmaddpackage(gh:threeal/CheckWarning.cmake@2.1.1)
     list(APPEND CMAKE_MODULE_PATH ${CheckWarning_SOURCE_DIR}/cmake)
   endif()
@@ -33,7 +43,7 @@ endif()
 
 find_package(argparse QUIET)
 if(NOT argparse_FOUND)
-  include(CPM)
+  get_cpm()
   cpmaddpackage(gh:p-ranav/argparse@3.0)
 endif()
 
@@ -55,7 +65,7 @@ if(NOT SUBPROJECT AND BUILD_TESTING)
 
   find_package(Catch2 QUIET)
   if(NOT Catch2_FOUND)
-    include(CPM)
+    get_cpm()
     cpmaddpackage(gh:catchorg/Catch2@3.5.3)
     list(APPEND CMAKE_MODULE_PATH ${Catch2_SOURCE_DIR}/extras)
   endif()
@@ -78,7 +88,7 @@ endif()
 if(NOT SUBPROJECT AND BUILD_TESTING)
   find_package(FixFormat QUIET)
   if(NOT FixFormat_FOUND)
-    include(CPM)
+    get_cpm()
     cpmaddpackage(gh:threeal/FixFormat.cmake@1.1.1)
     list(APPEND CMAKE_MODULE_PATH ${FixFormat_SOURCE_DIR}/cmake)
   endif()
