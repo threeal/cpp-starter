@@ -21,7 +21,12 @@ endif()
 
 # Enable warning checks if it is not a subproject and testing is enabled.
 if(NOT SUBPROJECT AND BUILD_TESTING)
-  find_package(CheckWarning REQUIRED)
+  find_package(CheckWarning QUIET)
+  if(NOT CheckWarning_FOUND)
+    include(CPM)
+    cpmaddpackage(gh:threeal/CheckWarning.cmake@2.1.1)
+    list(APPEND CMAKE_MODULE_PATH ${CheckWarning_SOURCE_DIR}/cmake)
+  endif()
   include(CheckWarning)
   add_check_warning()
 endif()
