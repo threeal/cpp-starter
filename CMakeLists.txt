@@ -76,7 +76,12 @@ endif()
 
 # Enable automatic formatting if it is not a subproject and testing is enabled.
 if(NOT SUBPROJECT AND BUILD_TESTING)
-  find_package(FixFormat REQUIRED)
+  find_package(FixFormat QUIET)
+  if(NOT FixFormat_FOUND)
+    include(CPM)
+    cpmaddpackage(gh:threeal/FixFormat.cmake@1.1.1)
+    list(APPEND CMAKE_MODULE_PATH ${FixFormat_SOURCE_DIR}/cmake)
+  endif()
   include(FixFormat)
   add_fix_format()
 endif()
