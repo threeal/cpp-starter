@@ -64,7 +64,7 @@ if(NOT SUBPROJECT AND BUILD_TESTING)
 
   find_package(Catch2 QUIET)
   if(NOT Catch2_FOUND)
-    cpmaddpackage(gh:catchorg/Catch2@3.5.4)
+    cpmaddpackage(gh:catchorg/Catch2@3.6.0)
     list(APPEND CMAKE_MODULE_PATH ${Catch2_SOURCE_DIR}/extras)
   endif()
 
