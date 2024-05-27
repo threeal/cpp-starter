@@ -1,6 +1,8 @@
-#include <argparse/argparse.hpp>
-#include <iostream>
 #include <my_fibonacci/sequence.hpp>
+
+#include <argparse/argparse.hpp>
+
+#include <iostream>
 
 int main(int argc, char** argv) {
   argparse::ArgumentParser program("generate_sequence");
