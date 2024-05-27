@@ -1,0 +1,23 @@
+name: Check
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  check-project:
+    name: Check Project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.6
+
+      - name: Configure Project
+        uses: threeal/cmake-action@v1.3.0
+        with:
+          options: BUILD_TESTING=ON
+
+      - name: Check Formatting
+        run: |
+          cmake --build build --target format-all
+          git diff --exit-code HEAD
