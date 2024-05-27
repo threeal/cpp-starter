@@ -62,10 +62,14 @@ target_link_libraries(generate_sequence PUBLIC argparse::argparse sequence)
 if(NOT SUBPROJECT AND BUILD_TESTING)
   enable_testing()
 
-  find_package(Catch2 QUIET)
-  if(NOT Catch2_FOUND)
-    cpmaddpackage(gh:catchorg/Catch2@3.6.0)
-    list(APPEND CMAKE_MODULE_PATH ${Catch2_SOURCE_DIR}/extras)
+  find_package(ut QUIET)
+  if(NOT ut_FOUND)
+    cpmaddpackage(
+      NAME ut
+      GITHUB_REPOSITORY boost-ext/ut
+      VERSION 2.0.1
+      OPTIONS "BOOST_UT_DISABLE_MODULE ON"
+    )
   endif()
 
   get_target_property(sequence_SOURCES sequence SOURCES)
@@ -73,13 +77,12 @@ if(NOT SUBPROJECT AND BUILD_TESTING)
 
   add_executable(sequence_test test/sequence_test.cpp ${sequence_SOURCES})
   target_include_directories(sequence_test PRIVATE ${sequence_HEADER_DIRS})
-  target_link_libraries(sequence_test PRIVATE Catch2::Catch2WithMain)
+  target_link_libraries(sequence_test PRIVATE Boost::ut)
 
   include(CheckCoverage)
   target_check_coverage(sequence_test)
 
-  include(Catch)
-  catch_discover_tests(sequence_test)
+  add_test(NAME "Sequence Test" COMMAND sequence_test)
 endif()
 
 # Enable automatic formatting if it is not a subproject and testing is enabled.
