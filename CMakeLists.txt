@@ -64,7 +64,12 @@ if(NOT SUBPROJECT AND BUILD_TESTING)
 
   find_package(ut QUIET)
   if(NOT ut_FOUND)
-    cpmaddpackage(gh:boost-ext/ut@2.0.1)
+    cpmaddpackage(
+      NAME ut
+      GITHUB_REPOSITORY boost-ext/ut
+      VERSION 2.0.1
+      OPTIONS "BOOST_UT_DISABLE_MODULE ON"
+    )
   endif()
 
   get_target_property(sequence_SOURCES sequence SOURCES)
