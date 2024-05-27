@@ -6,7 +6,7 @@ The C++ Starter is a [GitHub repository template](https://docs.github.com/en/rep
 
 - Utilizes [CMake](https://cmake.org/) as the build system generator.
 - Integrates [CPM.cmake](https://github.com/cpm-cmake/CPM.cmake/) for efficient package management.
-- Incorporates [Catch2](https://github.com/catchorg/Catch2) as the testing framework.
+- Incorporates [UT](https://boost-ext.github.io/ut) as the testing framework.
 - Enforces consistent code formatting through [Format.cmake](https://github.com/TheLartians/Format.cmake).
 - Implements static analysis by enabling warnings using [CheckWarning.cmake](https://github.com/threeal/CheckWarning.cmake/).
 - Comes with a preconfigured [GitHub Actions](https://github.com/features/actions) workflow for continuous integration.
