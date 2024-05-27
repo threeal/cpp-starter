@@ -1,5 +1,6 @@
-#include <algorithm>
 #include <my_fibonacci/sequence.hpp>
+
+#include <algorithm>
 
 namespace my_fibonacci {
 

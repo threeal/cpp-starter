@@ -1,5 +1,6 @@
-#include <catch2/catch_test_macros.hpp>
 #include <my_fibonacci/sequence.hpp>
+
+#include <catch2/catch_test_macros.hpp>
 
 TEST_CASE("test fibonacci sequence") {
   CHECK(my_fibonacci::fibonacci_sequence(-1) == std::vector<int>{});
