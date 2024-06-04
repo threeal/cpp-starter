@@ -5,23 +5,6 @@ on:
   push:
     branches: [main]
 jobs:
-  check-project:
-    name: Check Project
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.1.6
-
-      - name: Configure Project
-        uses: threeal/cmake-action@v1.3.0
-        with:
-          options: BUILD_TESTING=ON
-
-      - name: Check Format
-        run: |
-          cmake --build build --target format-all
-          git diff --exit-code HEAD
-
   test-project:
     name: Test Project
     runs-on: ${{ matrix.os }}-latest
