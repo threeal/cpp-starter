@@ -8,14 +8,9 @@ project(
   LANGUAGES CXX
 )
 
-# Check if this project is a subproject of another project.
-if(NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
-  set(SUBPROJECT TRUE)
-endif()
-
 # Append the module path and export to the parent scope if is a subproject.
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-if(SUBPROJECT)
+if(NOT PROJECT_IS_TOP_LEVEL)
   set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} PARENT_SCOPE)
 endif()
 
@@ -31,7 +26,7 @@ function(cpmaddpackage)
 endfunction()
 
 # Enable warning checks if it is not a subproject and testing is enabled.
-if(NOT SUBPROJECT AND BUILD_TESTING)
+if(PROJECT_IS_TOP_LEVEL AND BUILD_TESTING)
   find_package(CheckWarning QUIET)
   if(NOT CheckWarning_FOUND)
     cpmaddpackage(gh:threeal/CheckWarning.cmake@2.1.1)
@@ -59,7 +54,7 @@ add_executable(generate_sequence src/main.cpp)
 target_link_libraries(generate_sequence PUBLIC argparse::argparse sequence)
 
 # Declare test targets if it is not a subproject and testing is enabled.
-if(NOT SUBPROJECT AND BUILD_TESTING)
+if(PROJECT_IS_TOP_LEVEL AND BUILD_TESTING)
   enable_testing()
 
   find_package(ut QUIET)
@@ -86,7 +81,7 @@ if(NOT SUBPROJECT AND BUILD_TESTING)
 endif()
 
 # Enable automatic formatting if it is not a subproject and testing is enabled.
-if(NOT SUBPROJECT AND BUILD_TESTING)
+if(PROJECT_IS_TOP_LEVEL AND BUILD_TESTING)
   find_package(FixFormat QUIET)
   if(NOT FixFormat_FOUND)
     cpmaddpackage(gh:threeal/FixFormat.cmake@1.1.1)
@@ -97,7 +92,7 @@ if(NOT SUBPROJECT AND BUILD_TESTING)
 endif()
 
 # Declare export and install targets if it is not a subproject.
-if(NOT SUBPROJECT)
+if(PROJECT_IS_TOP_LEVEL)
   install(
     TARGETS generate_sequence sequence
     EXPORT my_fibonacci_targets
