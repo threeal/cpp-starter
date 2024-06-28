@@ -8,6 +8,9 @@ project(
   LANGUAGES CXX
 )
 
+option(MY_FIBONACCI_ENABLE_INSTALL "Enable install targets."
+  "${PROJECT_IS_TOP_LEVEL}")
+
 # Append the module path and export to the parent scope if is a subproject.
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 if(NOT PROJECT_IS_TOP_LEVEL)
@@ -91,8 +94,7 @@ if(PROJECT_IS_TOP_LEVEL AND BUILD_TESTING)
   add_fix_format()
 endif()
 
-# Declare export and install targets if it is not a subproject.
-if(PROJECT_IS_TOP_LEVEL)
+if(MY_FIBONACCI_ENABLE_INSTALL)
   install(
     TARGETS generate_sequence sequence
     EXPORT my_fibonacci_targets
