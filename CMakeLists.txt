@@ -11,12 +11,6 @@ project(
 option(MY_FIBONACCI_ENABLE_INSTALL "Enable install targets."
   "${PROJECT_IS_TOP_LEVEL}")
 
-# Append the module path and export to the parent scope if is a subproject.
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-if(NOT PROJECT_IS_TOP_LEVEL)
-  set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} PARENT_SCOPE)
-endif()
-
 function(cpmaddpackage)
   file(
     DOWNLOAD
@@ -77,7 +71,7 @@ if(PROJECT_IS_TOP_LEVEL AND BUILD_TESTING)
   target_include_directories(sequence_test PRIVATE ${sequence_HEADER_DIRS})
   target_link_libraries(sequence_test PRIVATE Boost::ut)
 
-  include(CheckCoverage)
+  include(cmake/CheckCoverage.cmake)
   target_check_coverage(sequence_test)
 
   add_test(NAME "Sequence Test" COMMAND sequence_test)
