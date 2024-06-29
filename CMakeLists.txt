@@ -22,6 +22,11 @@ function(cpmaddpackage)
   cpmaddpackage(${ARGN})
 endfunction()
 
+file(
+  DOWNLOAD https://raw.githubusercontent.com/threeal/CDeps.cmake/fc548f8e7f408c938a0631f337b7e135b1e963dc/cmake/CDeps.cmake
+    ${CMAKE_BINARY_DIR}/CDeps.cmake
+  EXPECTED_MD5 f1bf67c0a76b73b44dfcca3958b4bfc7)
+
 # Enable warning checks if it is not a subproject and testing is enabled.
 if(PROJECT_IS_TOP_LEVEL AND BUILD_TESTING)
   find_package(CheckWarning QUIET)
