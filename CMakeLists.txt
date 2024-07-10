@@ -8,6 +8,7 @@ project(
   LANGUAGES CXX
 )
 
+option(MY_FIBONACCI_ENABLE_TESTS "Enable test targets.")
 option(MY_FIBONACCI_ENABLE_INSTALL "Enable install targets."
   "${PROJECT_IS_TOP_LEVEL}")
 
@@ -22,8 +23,7 @@ function(cpmaddpackage)
   cpmaddpackage(${ARGN})
 endfunction()
 
-# Enable warning checks if it is not a subproject and testing is enabled.
-if(PROJECT_IS_TOP_LEVEL AND BUILD_TESTING)
+if(MY_FIBONACCI_ENABLE_TESTS)
   find_package(CheckWarning QUIET)
   if(NOT CheckWarning_FOUND)
     cpmaddpackage(gh:threeal/CheckWarning.cmake@2.1.1)
@@ -50,8 +50,7 @@ target_compile_features(sequence PRIVATE cxx_std_11)
 add_executable(generate_sequence src/main.cpp)
 target_link_libraries(generate_sequence PUBLIC argparse::argparse sequence)
 
-# Declare test targets if it is not a subproject and testing is enabled.
-if(PROJECT_IS_TOP_LEVEL AND BUILD_TESTING)
+if(MY_FIBONACCI_ENABLE_TESTS)
   enable_testing()
 
   find_package(ut QUIET)
@@ -77,8 +76,7 @@ if(PROJECT_IS_TOP_LEVEL AND BUILD_TESTING)
   add_test(NAME "Sequence Test" COMMAND sequence_test)
 endif()
 
-# Enable automatic formatting if it is not a subproject and testing is enabled.
-if(PROJECT_IS_TOP_LEVEL AND BUILD_TESTING)
+if(MY_FIBONACCI_ENABLE_TESTS)
   find_package(FixFormat QUIET)
   if(NOT FixFormat_FOUND)
     cpmaddpackage(gh:threeal/FixFormat.cmake@1.1.1)

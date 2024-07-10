@@ -15,7 +15,7 @@ jobs:
       - name: Configure Project
         uses: threeal/cmake-action@v1.3.0
         with:
-          options: BUILD_TESTING=ON
+          options: MY_FIBONACCI_ENABLE_TESTS=ON
 
       - name: Check Formatting
         run: |
