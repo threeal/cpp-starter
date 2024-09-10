@@ -7,11 +7,11 @@ on:
 jobs:
   test-project:
     name: Test Project
-    runs-on: ${{ matrix.os }}-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu, windows]
+        os: [ubuntu-22.04, windows-2022]
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.7
@@ -31,7 +31,7 @@ jobs:
           build-config: Debug
 
       - name: Check Coverage
-        if: ${{ matrix.os != 'windows' }}
+        if: ${{ matrix.os != 'windows-2022' }}
         uses: threeal/gcovr-action@v1.0.0
         with:
           excludes: build/*
