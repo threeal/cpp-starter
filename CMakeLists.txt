@@ -56,7 +56,7 @@ if(MY_FIBONACCI_ENABLE_TESTS)
     cpmaddpackage(
       NAME ut
       GITHUB_REPOSITORY boost-ext/ut
-      VERSION 2.1.0
+      VERSION 2.1.1
       OPTIONS "BOOST_UT_DISABLE_MODULE ON"
     )
   endif()
