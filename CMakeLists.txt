@@ -15,9 +15,9 @@ option(MY_FIBONACCI_ENABLE_INSTALL "Enable install targets."
 function(cpmaddpackage)
   file(
     DOWNLOAD
-    https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.40.2/CPM.cmake
+    https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.40.5/CPM.cmake
     ${CMAKE_BINARY_DIR}/_deps/CPM.cmake
-    EXPECTED_MD5 4d51aa9dab6104fad39c5b7a692d5e1c
+    EXPECTED_MD5 19cbb284c7b175d239670d47dd9d0e9e
   )
   include(${CMAKE_BINARY_DIR}/_deps/CPM.cmake)
   cpmaddpackage(${ARGN})
