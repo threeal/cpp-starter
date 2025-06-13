@@ -26,9 +26,3 @@ jobs:
 
       - name: Install Project
         run: cmake --install build --prefix install
-
-      - name: Upload Project as Artifact
-        uses: actions/upload-artifact@v4.6.2
-        with:
-          name: package-${{ matrix.os }}
-          path: install
