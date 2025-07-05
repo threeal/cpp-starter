@@ -33,7 +33,7 @@ endif()
 
 find_package(argparse QUIET)
 if(NOT argparse_FOUND)
-  cpmaddpackage(gh:p-ranav/argparse@3.1)
+  cpmaddpackage(gh:p-ranav/argparse@3.2)
 endif()
 
 add_library(sequence src/sequence.cpp)
