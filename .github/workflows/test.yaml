@@ -32,7 +32,7 @@ jobs:
 
       - name: Check Coverage
         if: ${{ matrix.os != 'windows-2022' }}
-        uses: threeal/gcovr-action@v1.1.0
+        uses: threeal/gcovr-action@v1.2.0
         with:
           excludes: build/*
           fail-under-line: 100
